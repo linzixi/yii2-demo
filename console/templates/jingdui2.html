@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="http://saas-pubsentiment-docs.oss-cn-hangzhou.aliyuncs.com/yq_briefdoc_new/js/echarts-all.js"></script>
+    <title>竞对报告</title>
+</head>
+<body style="margin:0;color:#525266">
+<div style="position:relative;width:1200px;margin:0 auto;font-size:14px">
+    <div style="background-color:#fff;padding: 30px 24px 10px;margin-bottom:20px;border:1px solid #edeff2;text-align:center">
+        <h1 style="margin:0;font-size:18px;line-height: 1.1;">{{get_briefdoc_title_data}}</h1>
+        <p style="color:#525266;margin-bottom:30px">{{get_briefdoc_time_data}}</p>
+        <table style="width:100%;border:1px solid #e3e3e3;border-collapse: collapse;">
+            <colgroup>
+                <col width="40%"/>
+                <col width="20%"/>
+                <col width="40%"/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th style="padding:13px 12px;border:1px solid #e3e3e3;text-align:left;background:#edf1f7;font-weight:700">方案名称</th>
+                <th style="padding:13px 12px;border:1px solid #e3e3e3;text-align:center;background:#edf1f7;font-weight:700">数据总量</th>
+                <th style="padding:13px 12px;border:1px solid #e3e3e3;text-align:right;background:#edf1f7;font-weight:700">分析词组</th>
+            </tr>
+            {{get_briefdoc_yq_total_data}}
+            </tbody>
+        </table>
+    </div>
+    <!-- begin -->
+    <div style="background-color:#fff;padding: 25px 24px 20px;margin-bottom:20px;border:1px solid #edeff2;page-break-inside: avoid;">
+        <h3 style="margin:0 0 15px;color:#3d3d4c;font-size:18px;border-left:4px solid #0095eb;padding-left:8px;line-height:18px;">趋势对比</h3>
+        <div>
+            <div style="width:100%;text-align:center;position:relative;height:340px;">
+                <div id="get_briefdoc_yq_trend_box" style="position:absolute;width:100%;height:100%; box-sizing:border-box;padding:10px;text-align: center">
+                    <img class="echarts_img" src="get_briefdoc_yq_trend_box.png" />
+                </div>
+            </div>
+            <div style="line-height:24px">{{get_briefdoc_yq_trend_msg}}</div>
+        </div>
+    </div>
+    <div style="background-color:#fff;padding:25px 24px 20px;margin-bottom:20px;border:1px solid #edeff2;page-break-inside: avoid;">
+        <h3 style="margin:0 0 15px;color:#3d3d4c;font-size:18px;border-left:4px solid #0095eb;padding-left:8px;line-height:18px;">平台分布</h3>
+        <div>
+            <div style="width:100%;text-align:center;position:relative;height:340px;">
+                <div id="get_briefdoc_platform_box" style="position:absolute;width:100%;height:100%; box-sizing:border-box;padding:10px;text-align: center">
+                    <img class="echarts_img" src="get_briefdoc_platform_box.png" />
+                </div>
+            </div>
+            <div style="line-height:24px">{{get_briefdoc_platform_msg}}</div>
+        </div>
+    </div>
+    <div style="background-color:#fff;padding:25px 24px 20px;margin-bottom:20px;border:1px solid #edeff2;page-break-inside: avoid;">
+        <h3 style="margin:0 0 15px;color:#3d3d4c;font-size:18px;border-left:4px solid #0095eb;padding-left:8px;line-height:18px;">情感分布</h3>
+        <div style="margin:0 -25px">
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:1px">【{{get_briefdoc_title1}}】</div>
+                <div id="get_briefdoc_media_distribute_box" style="width:100%;height:280px; box-sizing:border-box;padding:0px;text-align: center">
+                    <img class="echarts_img" src="get_briefdoc_media_distribute_box.png" />
+                </div>
+            </div>
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:1px">【{{get_briefdoc_title2}}】</div>
+                <div id="get_briefdoc_media_distribute_box1" style="width:100%;height:280px; box-sizing:border-box;padding:0px;text-align: center">
+                    <img class="echarts_img" src="get_briefdoc_media_distribute_box1.png" />
+                </div>
+            </div>
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:1px">【{{get_briefdoc_title3}}】</div>
+                <div id="get_briefdoc_media_distribute_box2" style="width:100%;height:280px; box-sizing:border-box;padding:0px;text-align: center">
+                    <img class="echarts_img" src="get_briefdoc_media_distribute_box2.png" />
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div style="line-height:24px">{{get_briefdoc_media_distribute_msg}}</div>
+    </div>
+    <div style="background-color:#fff;padding:25px 24px 20px;margin-bottom:20px;border:1px solid #edeff2;page-break-inside: avoid;">
+        <h3 style="margin:0 0 15px;color:#3d3d4c;font-size:18px;border-left:4px solid #0095eb;padding-left:8px;line-height:18px;">热门主题词</h3>
+        <div style="margin:0 -25px">
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:1px">【{{get_briefdoc_title1}}】</div>
+                <div id="get_briefdoc_hotwords_box" style="width:100%;height:280px; box-sizing:border-box;padding:0px;text-align: center">
+                    <img class="echarts_img" src="get_briefdoc_hotwords_box.png" />
+                </div>
+            </div>
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:1px">【{{get_briefdoc_title2}}】</div>
+                <div id="get_briefdoc_hotwords_box1" style="width:100%;height:280px; box-sizing:border-box;padding:0px;text-align: center">
+                    <img class="echarts_img" src="get_briefdoc_hotwords_box1.png" />
+                </div>
+            </div>
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:1px">【{{get_briefdoc_title3}}】</div>
+                <div id="get_briefdoc_hotwords_box2" style="width:100%;height:280px; box-sizing:border-box;padding:0px;text-align: center">
+                    <img class="echarts_img" src="get_briefdoc_hotwords_box2.png" />
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div style="line-height:24px">{{get_briefdoc_hotwords_msg}}</div>
+    </div>
+    <div style="background-color:#fff;padding:25px 24px 20px;margin-bottom:20px;border:1px solid #edeff2;page-break-inside: avoid;">
+        <h3 style="margin:0 0 15px;color:#3d3d4c;font-size:18px;border-left:4px solid #0095eb;padding-left:8px;line-height:18px;">发布地区</h3>
+        <div style="margin:0 -25px">
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:1px">【{{get_briefdoc_title1}}】</div>
+                <div id="get_briefdoc_hotpubarea_box" style="width:100%;height:280px; box-sizing:border-box;text-align: center;">
+                    <img class="echarts_img" src="get_briefdoc_hotpubarea_box.png" />
+                </div>
+                <table style="width:100%;border:1px solid #e3e3e3;border-collapse: collapse;margin-top:15px">
+                    <colgroup>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                    </colgroup>
+                    <tbody>
+                    {{get_briefdoc_hotpubarea_html1}}
+                    </tbody>
+                </table>
+            </div>
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:1px">【{{get_briefdoc_title2}}】</div>
+                <div id="get_briefdoc_hotpubarea_box1" style="width:100%;height:280px; box-sizing:border-box;text-align: center;">
+                    <img class="echarts_img" src="get_briefdoc_hotpubarea_box1.png" />
+                </div>
+                <table style="width:100%;border:1px solid #e3e3e3;border-collapse: collapse;margin:15px 0 20px">
+                    <colgroup>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                    </colgroup>
+                    <tbody>
+                    {{get_briefdoc_hotpubarea_html2}}
+                    </tbody>
+                </table>
+            </div>
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:1px">【{{get_briefdoc_title3}}】</div>
+                <div id="get_briefdoc_hotpubarea_box2" style="width:100%;height:280px; box-sizing:border-box;text-align: center;">
+                    <img class="echarts_img" src="get_briefdoc_hotpubarea_box2.png" />
+                </div>
+                <table style="width:100%;border:1px solid #e3e3e3;border-collapse: collapse;margin-top:15px">
+                    <colgroup>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                        <col width="20%"/>
+                    </colgroup>
+                    <tbody>
+                    {{get_briefdoc_hotpubarea_html3}}
+                    </tbody>
+                </table>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div style="line-height:24px">{{get_briefdoc_hotpubarea_msg}}</div>
+    </div>
+    <div style="background-color:#fff;padding:25px 24px 20px;margin-bottom:20px;border:1px solid #edeff2;page-break-inside: avoid;">
+        <h3 style="margin:0 0 15px;color:#3d3d4c;font-size:18px;border-left:4px solid #0095eb;padding-left:8px;line-height:18px;">活跃账号</h3>
+        <div style="margin:0 -25px">
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                {{get_briefdoc_activeAccounts_html1}}
+            </div>
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                {{get_briefdoc_activeAccounts_html2}}
+            </div>
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                {{get_briefdoc_activeAccounts_html3}}
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div style="line-height:24px">{{get_briefdoc_activeAccounts_msg}}</div>
+    </div>
+    <div style="background-color:#fff;padding:25px 24px 20px;margin-bottom:20px;border:1px solid #edeff2;page-break-inside: avoid;">
+        <h3 style="margin:0 0 15px;color:#3d3d4c;font-size:18px;border-left:4px solid #0095eb;padding-left:8px;line-height:18px;">热点文章</h3>
+        <div style="margin:0 -25px">
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:10px">【{{get_briefdoc_title1}}】</div>
+                <table style="width:100%;border:1px solid #e3e3e3;border-collapse: collapse;margin-top:0px;table-layout: fixed;">
+                    <colgroup>
+                        <col width="78%"/>
+                        <col width="22%"/>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th width="78%" style="color:#525266;border:1px solid #e3e3e3;padding:13px 12px;text-align:center;">标题</th>
+                        <th width="22%" style="color:#525266;border:1px solid #e3e3e3;padding:13px 12px;text-align:center;">相似文章数</th>
+                    </tr>
+                    {{get_briefdoc_hotArticles_html1}}
+                    </tbody>
+                </table>
+            </div>
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:10px">【{{get_briefdoc_title2}}】</div>
+                <table style="width:100%;border:1px solid #e3e3e3;border-collapse: collapse;margin-top:0px;table-layout: fixed;">
+                    <colgroup>
+                        <col width="78%"/>
+                        <col width="22%"/>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th width="78%" style="color:#525266;border:1px solid #e3e3e3;padding:13px 12px;text-align:center;">标题</th>
+                        <th width="22%" style="color:#525266;border:1px solid #e3e3e3;padding:13px 12px;text-align:center;">相似文章数</th>
+                    </tr>
+                    {{get_briefdoc_hotArticles_html2}}
+                    </tbody>
+                </table>
+            </div>
+            <div style="width:33.33%;position:relative;padding:0 25px;box-sizing:border-box;float:left">
+                <div style="text-align:center;margin-bottom:10px">【{{get_briefdoc_title3}}】</div>
+                <table style="width:100%;border:1px solid #e3e3e3;border-collapse: collapse;margin-top:0px;table-layout: fixed;">
+                    <colgroup>
+                        <col width="78%"/>
+                        <col width="22%"/>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th width="78%" style="color:#525266;border:1px solid #e3e3e3;padding:13px 12px;text-align:center;">标题</th>
+                        <th width="22%" style="color:#525266;border:1px solid #e3e3e3;padding:13px 12px;text-align:center;">相似文章数</th>
+                    </tr>
+                    {{get_briefdoc_hotArticles_html3}}
+                    </tbody>
+                </table>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+
+    //趋势对比
+    function setLineSeries(name, data) {
+        var series = {
+            name:name,
+            type:'line',
+            smooth:true,
+            symbolSize: 3,
+            symbol: 'emptycircle',
+            itemStyle: {
+                normal: {
+                    label: {
+                        formatter: function(params) {
+                            return dataValue - params.value;
+                        },
+                        fontSize: 20,
+                        padding: [90, 0, 0, 0],
+                        color: '#fff',
+                        textStyle: {
+                            baseline: 'top'
+                        }
+                    },
+                }
+            },
+
+            data:data
+        };
+        return series;
+    }
+    function getLineSeries(chart_data){
+        var seriesArr =[];
+        colorArea = [
+            {color: 'rgba(18, 176, 255, 0)'},
+            {color: 'rgba(255, 139, 50,0)'},
+            {color:'rgba(255, 51, 78, 0)'}
+        ];
+
+        for(var i=0;i<chart_data.legend.length;i++){
+            var tempSeries = setLineSeries(chart_data.legend[i], chart_data.Y[chart_data.legend[i]]);
+            seriesArr.push(tempSeries);
+        }
+        return  seriesArr;
+    }
+    function get_briefdoc_yq_trend(chart_data)
+    {
+        // if(parseInt(chart_data.total) <= 0)
+        // {
+        // 	return false;
+        // }
+        var box = echarts.init(document.getElementById('get_briefdoc_yq_trend_box'),'macarons');
+        option = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            animation:false,
+            legend: {
+                x: 'center',
+                y: 'bottom',
+                itemGap:30,
+                textStyle: {
+                    color: '#8a8a99',
+                    fontSize:'14'
+                },
+                data:chart_data.legend,
+                selected: {'全部' : true}
+            },
+            grid: {
+                y: '30',
+                x: '60',
+                x2: '30',
+                y2: '60',
+                borderWidth:0,
+                containLabel: true
+            },
+            calculable: true,
+            color:["#2475fb","#e52e45","#f99074"],
+            xAxis: [
+                {
+                    type: 'category',
+                    axisLine: {
+                        show: true,
+                        lineStyle:{
+                            color:'#ebebeb',
+                        }
+                    },
+                    axisLabel : {
+                        formatter: '{value}',
+                        margin:15,
+                        textStyle: {
+                            color: '#8a8a99',
+                            fontSize:'12'
+                        }
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            color: ['#ebebeb']
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        formatter:function(params){
+                            var newParams=params;
+                            return newParams;
+                        },
+                        textStyle: {
+                            color: '#8a8a99',
+                            fontSize:'12'
+                        }
+                    },
+                    boundaryGap: false,
+                    data: chart_data.X
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    axisTick: {
+                        textStyle: {
+                            color: '#aaa'
+                        }
+                    },
+                    axisLine: {
+                        show: false,
+                        lineStyle:{
+                            color:'#ebebeb',
+                        }
+                    },
+                    axisLabel : {
+                        formatter : function(params){
+                            var newParams = "";
+                            var paramsNameNumber = params.toString().length;
+                            if(paramsNameNumber >= 5){
+                                newParams =  (params / 10000) + 'w';
+                            } else{
+                                newParams = params;
+                            }
+                            return newParams;
+                        },
+                        textStyle: {
+                            color: '#8a8a99',
+                            fontSize:'12'
+                        }
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: ['#ebebeb']
+                        }
+                    },
+                    splitArea: {
+                        show: false
+                    }
+                }
+            ],
+            series:getLineSeries(chart_data)
+        };
+        box.setOption(option);
+        window.get_briefdoc_yq_trend_box=box;
+    }
+
+    //情感分布
+    function setPieData(chart_data,colr){
+        var option = {
+            animation:false,
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b} : {c} ({d}%)"
+            },
+            /**legend: {
+			x : '77%',
+			y : 'center',
+			padding:'0',
+			itemGap: 20,
+			orient : 'vertical',
+			data:chart_data.legend
+		},*/
+
+            calculable : false,
+            color:colr,
+            series : [{
+                name:'访问来源',
+                type:'pie',
+                clickable: false,
+                radius : ['45%', '68%'],
+                center:['50%', '48%'],
+                startAngle:0,
+                itemStyle :{
+                    normal : {
+                        label : {
+                            show : true,
+                            ftextStyle : {
+                                fontSize : '14',
+                            },
+                            formatter: "{b}\n{d}%"
+                        },
+                        labelLine : {
+                            show : true,
+                            length:10,
+                            length2:5,
+                        }
+                    },
+                    emphasis : {
+                        label : {
+                            show : false,
+                            position : 'center',
+                            textStyle : {
+                                fontSize : '20',
+                                fontWeight : 'bold'
+                            }
+                        }
+                    }
+                },
+                data:chart_data.data
+            }]
+        };
+        return option;
+    }
+
+    function get_briefdoc_media_distribute(chart_data,id)
+    {
+        // if(parseInt(chart_data.total) <= 0)
+        // {
+        // 	return false;
+        // }
+        var box=echarts.init(document.getElementById(id));
+        var color=["#2475fb","#e52e45","#ff8121"];
+        box.setOption(setPieData(chart_data,color));
+        window[id]=box;
+    }
+
+    //平台分布
+    function setBarSeries(name, color, data) {
+        var series = {
+            name: name,
+            type: 'bar',
+            itemStyle: {
+                normal: {
+                    color: color
+                }
+            },
+            data: data
+        };
+        return series;
+    }
+    function getBarSeries(legName,data){
+        var color = ["#2475fb","#e52e45","#f99074"];
+        var series_chart = [];
+        for (var j = 0; j < legName.length; j++) {
+            var temp_Series = setBarSeries(legName[j], color[j], data[j]);
+            series_chart.push(temp_Series);
+        }
+        return series_chart;
+
+    }
+    function setBarData(chart_data){
+        console.log(chart_data);
+        var option = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                y: 'bottom',
+                itemGap:30,
+                data: chart_data.legend
+            },
+            grid: {
+                borderWidth: 0,
+                y: '30',
+                x: '60',
+                x2: '30',
+                y2: '60',
+            },
+            calculable: false,
+            xAxis: [
+                {
+                    type: 'category',
+                    axisTick: {show: false},
+                    axisLine: {
+                        lineStyle: {
+                            color: '#ccc',
+                            width: 1
+                        }
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#777'
+                        }
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    data: chart_data.dataYaxis
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    axisLine: {
+                        show: false
+                    },
+                    axisLabel: {
+                        formatter: function(params) {
+                            var newParams = "";
+                            var paramsNameNumber = params.toString().length;
+                            if (paramsNameNumber >= 5) {
+                                newParams = (params / 10000) + 'w';
+                            } else {
+                                newParams = params;
+                            }
+                            // alert(newParams);
+                            return newParams;
+                        },
+                        textStyle: {
+                            color: '#b8b8b8'
+                        }
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: '#ebebeb'
+                        }
+                    }
+                }
+            ],
+
+            series:getBarSeries(chart_data.legend,chart_data.data)
+        };
+        return option;
+    }
+    function get_briefdoc_platform(chart_data,id)
+    {
+        // if(parseInt(chart_data.total) <= 0)
+        // {
+        // 	return false;
+        // }
+        var box=echarts.init(document.getElementById(id));
+        box.setOption(setBarData(chart_data));
+        window[id]=box;
+    }
+
+    //发布地区
+    function setMapData(chart_data,name){
+        var option = {
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b} : {c}"
+            },
+            dataRange: {
+                min: chart_data.minValue,
+                max: chart_data.maxValue,
+                x: '2',
+                y: 'bottom',
+                itemWidth:16,
+                itemHeight:6,
+                text:['高','低'],
+                calculable : true
+            },
+            series : [
+                {
+                    name: '地域分布',
+                    type: 'map',
+                    clickable: false,
+                    mapType: name,
+                    roam: false,
+                    itemStyle:{
+                        emphasis:{label:{show:true}}
+                    },
+                    data:chart_data.province
+                },
+            ]
+        };
+        return option;
+    }
+
+    function get_briefdoc_hotpubarea(chart_data,name,id)
+    {
+        // if(parseInt(chart_data.total) <= 0)
+        // {
+        // 	return false;
+        // }
+        var box = echarts.init(document.getElementById(id));
+        box.setOption(setMapData(chart_data,name));
+        window[id]=box;
+    }
+
+
+    //热门词云
+    function createRandomItemStyle(){
+        return {
+            normal: {
+                color: 'rgb(' + [
+                    Math.round(Math.random() * 200),
+                    Math.round(Math.random() * 200),
+                    Math.round(Math.random() * 200)
+                ].join(',') + ')',
+                fontFamily: '"Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif'
+            }
+        };
+    }
+    function cloudData1(hotwords){
+        var falg = false;
+        if(hotwords==undefined){
+            return false;
+        }else{
+            if (hotwords[0].value < 40) {
+                $.each(hotwords, function(index, val) {
+                    falg = true;
+                    val.value = val.value * 40;
+                    val.itemStyle = createRandomItemStyle()
+                })
+            } else {
+                $.each(hotwords, function(index, val) {
+                    val.itemStyle = createRandomItemStyle()
+                })
+            }
+        }
+        var option = {
+            animation:false,
+            tooltip: {
+                show: true,
+                formatter: function(params, ticket, callback) {
+                    var res = '';
+                    if (falg) {
+                        res = params.name + ' ' + params.value / 40;
+                    } else {
+                        res = params.name + ' ' + params.value;
+                    }
+                    callback(ticket, res)
+                    setTimeout(function() {
+                        callback(ticket, res);
+                    }, 1);
+                    return 'loading';
+                }
+            },
+            series: [{
+                type: 'wordCloud',
+                size: ['100%', '90%'],
+                clickable: false,
+                textRotation : [0, 45, -45],
+                textPadding:2,
+                autoSize: {
+                    enable: true,
+                    minSize: 15
+                },
+                data: hotwords
+
+            }]
+        };
+        return option;
+    }
+    function get_briefdoc_hotwords(chart_data,id)
+    {
+        // if(parseInt(chart_data.total) <= 0)
+        // {
+        // 	return false;
+        // }
+        hotwords=chart_data.hotwords;
+
+        var box = echarts.init(document.getElementById(id));
+        box.setOption(cloudData1(hotwords));
+        window[id]=box;
+    }
+</script>

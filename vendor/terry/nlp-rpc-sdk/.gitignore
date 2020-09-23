@@ -1,0 +1,7 @@
+.idea
+_output
+vendor
+composer.lock
+deploy.sh
+*.log
+test.cmd

@@ -1,0 +1,31 @@
+{
+  "name": "terry/nlp-rpc-sdk",
+  "description": "NLP gRPC SDK for PHP",
+  "keywords": [
+    "gRPC",
+    "gRPC SDK"
+  ],
+  "homepage": "https://code.aliyun.com/qingbo-library/nlp-php-sdk.git",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "TerryWong",
+      "email": "wanghuan@gsdata.cn"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "grpc/grpc": "^v1.3.0",
+    "google/protobuf": "^v3.3.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "terry\\nlp\\": "src/",
+      "GPBMetadata\\": "src/GPBMetadata",
+      "Nlp\\": "src/Nlp"
+    }
+  }
+}

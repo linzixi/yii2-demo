@@ -1,0 +1,6 @@
+RewriteEngine On
+
+RewriteCond %{REQUESTE_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
